@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+.job-box {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .job-box {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .job-box {
+    width: 33.33%;
+  }
+}
+</style>
+
+</head>
+<body>
+    <div class="container d-flex flex-column bd-highlight mb-3">
+        <h1 class="mt-5 text-center">Job Search</h1>
+        <form method="POST" action="/" class="text-center ">
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter job search" required>
+            </div>
+            <button type="submit" class="text-center btn btn-primary ">Search</button>
+        </form>
+
+        {% if job_details %}
+            <h2 class="mt-5 mb-3">Job Details</h2>
+            <div class="flex">
+                {% for job in job_details %}
+                    <div class="mb-2">
+                        <div class="card p-5 shadow p-3 mb-5 bg-white rounded flex">
+                            <strong class="mb-2">Job Title:</strong> {{ job.job_title }}<br>
+                            <strong class="mb-2">Company Name:</strong> {{ job.job_company_name }}<br>
+                            <strong class="mb-2">Job Location:</strong> {{ job.job_location }}<br><br>
+                            <strong class="mb-2">Job Requirements:</strong> {{ job.job_skills }}<br>
+                            <a class="btn btn-primary mt-2" href={{job.job_link}}>Job Details</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Include Bootstrap JavaScript (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
